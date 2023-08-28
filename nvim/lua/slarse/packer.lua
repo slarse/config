@@ -79,12 +79,4 @@ return require('packer').startup(function(use)
             })
         end,
     }
-    use({
-        "jackMort/ChatGPT.nvim",
-        requires = {
-            "MunifTanjim/nui.nvim",
-            "nvim-lua/plenary.nvim",
-            "nvim-telescope/telescope.nvim"
-        }
-    })
 end)
