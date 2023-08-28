@@ -25,5 +25,4 @@ export GPG_TTY=$(tty)
 
 export PATH="$PATH:$HOME/.local/bin:$HOME/.scripts:$HOME/.cargo/bin"
 
-# Created by `userpath` on 2023-03-31 14:53:48
-export PATH="$PATH:/home/slarse/.repobee/bin"
+cd
