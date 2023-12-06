@@ -38,3 +38,9 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 export XDG_CONFIG_HOME="$HOME/.config"
+
+# bash history settings
+export HISTSIZE=100000
+export HISTFILESIZE=$HISTSIZE
+export HISTCONTROL=ignoredups:erasedups
+shopt -s histappend
