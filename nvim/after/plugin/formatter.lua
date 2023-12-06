@@ -25,6 +25,9 @@ require('formatter').setup {
     typescriptreact = {
         require('formatter.filetypes.typescriptreact').prettier,
     },
+    go = {
+        require('formatter.filetypes.go').gofmt,
+    },
 
     -- Use the special '*' filetype for defining formatter configurations on
     -- any filetype
