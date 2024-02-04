@@ -23,7 +23,8 @@ source /usr/share/fzf/completion.bash
 # required for GPG to be able to prompt for a passphrase
 export GPG_TTY=$(tty)
 
-export PATH="$PATH:$HOME/.local/bin:$HOME/.scripts:$HOME/.cargo/bin"
+export GOPATH="$HOME/go"
+export PATH="$PATH:$HOME/.local/bin:$HOME/.scripts:$HOME/.cargo/bin:$GOPATH/bin"
 
 if [ -f ~/.bashrc_ext ]; then
     . ~/.bashrc_ext
