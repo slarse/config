@@ -18,8 +18,6 @@ print(lazypath)
 local lazy = require('lazy')
 
 lazy.setup({
-  'wbthomason/packer.nvim',
-
   { 'nvim-telescope/telescope.nvim', tag = '0.1.5', dependencies = 'nvim-lua/plenary.nvim' },
 
   { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' },
@@ -27,7 +25,7 @@ lazy.setup({
   'theprimeagen/harpoon',
   'tpope/vim-fugitive',
 
-  { 'VonHeikemen/lsp-zero.nvim', branch = 'v1.x', dependencies = {
+  { 'VonHeikemen/lsp-zero.nvim', branch = 'v3.x', dependencies = {
     'neovim/nvim-lspconfig',
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
@@ -37,7 +35,7 @@ lazy.setup({
     'hrsh7th/cmp-path',
     'saadparwaiz1/cmp_luasnip',
     'hrsh7th/cmp-nvim-lua',
-    'L3MON4D3/LuaSnip',
+    {'L3MON4D3/LuaSnip'},
     'rafamadriz/friendly-snippets'
   }},
 
