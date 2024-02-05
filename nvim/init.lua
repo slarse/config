@@ -44,15 +44,7 @@ lazy.setup({
 			"neovim/nvim-lspconfig",
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
-			{
-				"hrsh7th/nvim-cmp",
-				dependencies = {
-					{
-						"MattiasMTS/cmp-dbee",
-						ft = "sql",
-					},
-				},
-			},
+			"hrsh7th/nvim-cmp",
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
