@@ -92,7 +92,7 @@ cmp.setup({
     ['<S-Tab>'] = cmp.mapping.select_prev_item(),
 
     -- navigate between snippet placeholder
-    ['<C-d>'] = cmp_action.luasnip_jump_forward(),
+    ['<C-j>'] = cmp_action.luasnip_jump_forward(),
     ['<C-b>'] = cmp_action.luasnip_jump_backward(),
 
     -- scroll documentation window
