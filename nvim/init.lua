@@ -13,11 +13,23 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-print(lazypath)
-
 local lazy = require('lazy')
 
 lazy.setup({
+  {
+    "slarse/nvim-dbee",
+    branch = "remove-duplicate-tag",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+    },
+    build = function()
+      require("dbee").install()
+    end,
+    config = function()
+      require("dbee").setup(--[[optional config]])
+    end,
+  },
+
   { 'nvim-telescope/telescope.nvim', tag = '0.1.5', dependencies = 'nvim-lua/plenary.nvim' },
 
   { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' },
