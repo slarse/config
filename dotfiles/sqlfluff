@@ -1,0 +1,6 @@
+[sqlfluff]
+sql_file_exts = .sql
+dialect = postgres
+
+[sqlfluff:rules:capitalisation.keywords]
+capitalisation_policy = upper
