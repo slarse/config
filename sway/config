@@ -127,6 +127,10 @@ bindsym $mod+Shift+r restart
 
 bindsym $mod+Shift+s exec screeny screeny.png
 
+# brightness controls
+bindsym XF86MonBrightnessUp exec brightnessctl set +10%
+bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
+
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
