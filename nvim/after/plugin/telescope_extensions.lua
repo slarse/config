@@ -1,10 +1,8 @@
 local pickers = require("telescope.pickers")
 local finders = require("telescope.finders")
-local sorters = require("telescope.sorters")
 local conf = require("telescope.config").values
 local make_entry = require("telescope.make_entry")
 
-local actions = require("telescope.actions")
 local action_state = require("telescope.actions.state")
 
 local create_task_finder = function(opts)
@@ -19,6 +17,30 @@ local create_task_finder = function(opts)
 			entry_maker = make_entry.gen_from_vimgrep(opts),
 		}
 	)
+end
+
+local function commit_finished_task(text, match_column, filename)
+	local column = match_column + string.len("- [ ] ")
+
+	local sanitized_text = string.sub(string.gsub(text, "'", ""), column, -1)
+	if string.len(sanitized_text) > 35 then
+		sanitized_text = string.sub(sanitized_text, 0, 35) .. "..."
+	end
+
+	vim.api.nvim_command("!git add " .. filename)
+	vim.api.nvim_command("!git commit -m 'Finish task: " .. sanitized_text .. "' " .. filename)
+end
+
+local function write_tick(bufnr, match_line, match_column)
+	local line_index = match_line - 1
+	local tick_column = match_column + 2
+	vim.api.nvim_buf_set_text(bufnr, line_index, tick_column, line_index, tick_column + 1, { "x" })
+end
+
+local function refresh_preview(current_picker, selection, opts)
+	write_tick(current_picker.previewer.state.bufnr, selection.lnum, selection.col)
+	local new_finder = create_task_finder(opts)
+	current_picker:refresh(new_finder, opts)
 end
 
 local find_tasks = function(opts)
@@ -37,21 +59,12 @@ local find_tasks = function(opts)
 					local bufnr = vim.api.nvim_create_buf(false, true)
 					vim.api.nvim_buf_call(bufnr, function()
 						vim.cmd.edit(selection.filename)
-						local line_index = selection.lnum - 1
-						local x_column = selection.col + 2
-						vim.api.nvim_buf_set_text(0, line_index, x_column, line_index, x_column + 1, { "x" })
+						write_tick(0, selection.lnum, selection.col)
 						vim.cmd.write(selection.filename)
 
-						vim.api.nvim_buf_set_text(
-							current_picker.previewer.state.bufnr,
-							line_index,
-							x_column,
-							line_index,
-							x_column + 1,
-							{ "x" }
-						)
-						local new_finder = create_task_finder(opts)
-						current_picker:refresh(new_finder, opts)
+						commit_finished_task(selection.text, selection.col, selection.filename)
+
+						refresh_preview(current_picker, selection, opts)
 					end)
 				end
 
