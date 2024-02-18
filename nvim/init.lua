@@ -31,6 +31,17 @@ lazy.setup({
 	},
 
 	{
+		"slarse/teletasks.nvim",
+		dranch = "main",
+		dependencies = {
+			"nvim-telescope/telescope.nvim"
+		},
+		config = function()
+			require("teletasks")
+		end,
+	},
+
+	{
 		"ray-x/go.nvim",
 		dependencies = { "ray-x/guihua.lua", },
 		config = function()
