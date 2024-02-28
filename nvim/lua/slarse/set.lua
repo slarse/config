@@ -12,3 +12,6 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 vim.opt.filetype = "on"
+
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
