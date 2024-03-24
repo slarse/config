@@ -237,6 +237,13 @@ input "type:keyboard" {
     xkb_options "ctrl:nocaps,grp:alt_shift_toggle"
 }
 
+input "type:touchpad" {
+    tap enabled
+    tap_button_map lrm
+    dwt enabled
+    dwtp enabled
+}
+
 exec swayidle -w \
   timeout 900 'swaylock -f' \
   timeout 905 'swaymsg "output * power off"' \
