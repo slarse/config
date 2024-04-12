@@ -34,7 +34,7 @@ lazy.setup({
 		"slarse/teletasks.nvim",
 		dranch = "main",
 		dependencies = {
-			"nvim-telescope/telescope.nvim"
+			"nvim-telescope/telescope.nvim",
 		},
 		config = function()
 			require("teletasks")
@@ -43,7 +43,7 @@ lazy.setup({
 
 	{
 		"ray-x/go.nvim",
-		dependencies = { "ray-x/guihua.lua", },
+		dependencies = { "ray-x/guihua.lua" },
 		config = function()
 			require("go").setup()
 		end,
@@ -85,7 +85,9 @@ lazy.setup({
 		opts = {
 			floating_window = false,
 		},
-		config = function(_, opts) require'lsp_signature'.setup(opts) end
+		config = function(_, opts)
+			require("lsp_signature").setup(opts)
+		end,
 	},
 
 	"mhartington/formatter.nvim",
