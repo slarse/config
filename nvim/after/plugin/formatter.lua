@@ -31,6 +31,9 @@ require('formatter').setup {
     sql = {
         require('formatter.filetypes.sql').sqlfluff,
     },
+    html = {
+        require('formatter.filetypes.html').prettier,
+    },
 
     -- Use the special '*' filetype for defining formatter configurations on
     -- any filetype
