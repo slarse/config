@@ -10,3 +10,6 @@ require("go").setup({
 	lsp_on_attach = false,
 	dap_debug = true,
 })
+
+vim.keymap.set('i', '<leader>n', '<space>=<space>')
+vim.keymap.set('i', '<leader>=', '<space>:=<space>')

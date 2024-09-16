@@ -17,6 +17,11 @@ local lazy = require("lazy")
 
 lazy.setup({
 	{
+		"L3MON4D3/LuaSnip",
+		version = "v2.*",
+		build = "make install_jsregexp",
+	},
+	{
 		"slarse/nvim-dbee",
 		branch = "remove-duplicate-tag",
 		dependencies = {
@@ -125,3 +130,5 @@ lazy.setup({
 })
 
 vim.api.nvim_create_user_command("CheckBox", "s /\\[.*\\]/[x]/", {})
+
+require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/LuaSnip/" })
