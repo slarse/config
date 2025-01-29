@@ -17,6 +17,13 @@ local lazy = require("lazy")
 
 lazy.setup({
 	{
+		"smoka7/hop.nvim",
+		version = "v2.*",
+		opts = {
+			keys = "etovxqpdygfblzhckisuran",
+		},
+	},
+	{
 		"L3MON4D3/LuaSnip",
 		version = "v2.*",
 		build = "make install_jsregexp",
