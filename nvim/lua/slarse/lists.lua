@@ -1,7 +1,3 @@
-local function get_zero_indexed_row(win)
-  return vim.api.nvim_win_get_cursor(win)[1] - 1
-end
-
 local function get_file_indent()
   local tabstop = vim.api.nvim_get_option_value("tabstop", {})
   local shiftwidth = vim.api.nvim_get_option_value("shiftwidth", {})
@@ -16,12 +12,15 @@ local function get_file_indent()
 end
 
 local function get_line_indent_level()
-  local file_indent = get_file_indent()
+  local indent_char = "\t"
+  if vim.api.nvim_get_option_value("expandtab", {}) then
+    indent_char = " "
+  end
+
   local line = vim.api.nvim_get_current_line()
+  local line_indent = string.match(line, "^" .. indent_char .. "*")
 
-  local line_indent = string.match(line, "^" .. file_indent .. "*")
-
-  return math.floor(string.len(line_indent) / string.len(file_indent))
+  return math.floor(string.len(line_indent) / string.len(get_file_indent()))
 end
 
 local list_start_token_to_end_token = {
@@ -98,7 +97,7 @@ local function list_expand_lines()
   vim.api.nvim_buf_set_text(0, start_row, start_col, end_row, end_col, replacement)
 end
 
-local function list_contract_lines()
+local function list_collapse_lines()
   local node = vim.treesitter.get_node()
   if node == nil then
     vim.notify("No node under cursor ...")
@@ -129,4 +128,7 @@ local function list_contract_lines()
 end
 
 vim.api.nvim_create_user_command("ListExpandLines", list_expand_lines, {})
-vim.api.nvim_create_user_command("ListContractLines", list_contract_lines, {})
+vim.api.nvim_create_user_command("ListCollapseLines", list_collapse_lines, {})
+
+vim.keymap.set("n", "<leader>le", list_expand_lines)
+vim.keymap.set("n", "<leader>lc", list_collapse_lines)
