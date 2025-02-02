@@ -43,4 +43,4 @@ vim.keymap.set("n", "<leader>T", function()
 	hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = false, hint_offset = 1 })
 end, { remap = true })
 
-vim.keymap.set("n", "<leader>w", ":HopWord<cr>")
+vim.keymap.set("n", "<leader>w", hop.hint_words)
