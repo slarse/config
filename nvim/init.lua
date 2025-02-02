@@ -152,7 +152,7 @@ lazy.setup({
 
 		---@type Ollama.Config
 		opts = {
-      model = "phi4"
+			model = "phi3",
 		},
 	},
 
