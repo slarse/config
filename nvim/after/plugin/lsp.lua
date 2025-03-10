@@ -100,3 +100,16 @@ cmp.setup({
     ['<C-u>'] = cmp.mapping.scroll_docs(-5),
   }),
 })
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'bruno',
+  callback = function(ev)
+    vim.lsp.start({
+      init_options = {
+        hostInfo = 'neovim',
+      },
+      name = 'bruno-ls',
+      cmd = {'bruno-ls'},
+    })
+  end,
+})
