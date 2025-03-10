@@ -174,29 +174,6 @@ lazy.setup({
 			{ "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
 		},
 	},
-
-	{
-		"zbirenbaum/copilot.lua",
-		cmd = "Copilot",
-		event = "InsertEnter",
-		config = function()
-			require("copilot").setup({
-				suggestion = {
-					enabled = false,
-					auto_trigger = true,
-					debounce = 75,
-					keymap = {
-						accept = "<leader>a",
-						accept_word = false,
-						accept_line = false,
-						next = "<M-]>",
-						prev = "<M-[>",
-						dismiss = "<C-]>",
-					},
-				},
-			})
-		end,
-	},
 })
 
 vim.api.nvim_create_user_command("CheckBox", "s /\\[.*\\]/[x]/", {})
