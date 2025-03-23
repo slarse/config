@@ -9,6 +9,9 @@ vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 vim.keymap.set('n', 'n', 'nzzzv')
 vim.keymap.set('n', 'N', 'Nzzzv')
 
+-- clear search by pressing escape in normal mode
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+
 -- brackets
 vim.keymap.set('i', '<leader>u', '()<Left>')
 vim.keymap.set('i', '<leader><leader>u', '()')
