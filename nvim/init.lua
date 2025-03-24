@@ -96,20 +96,33 @@ lazy.setup({
 	"tpope/vim-fugitive",
 
 	{
-		"VonHeikemen/lsp-zero.nvim",
-		branch = "v3.x",
+		-- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
+		-- used for completion, annotations and signatures of Neovim apis
+		"folke/lazydev.nvim",
+		ft = "lua",
+		opts = {
+			library = {
+				-- Load luvit types when the `vim.uv` word is found
+				{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+			},
+		},
+	},
+
+	{
+		"neovim/nvim-lspconfig",
 		dependencies = {
-			"neovim/nvim-lspconfig",
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
+			"WhoIsSethDaniel/mason-tool-installer.nvim",
+
 			"hrsh7th/nvim-cmp",
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
-			"saadparwaiz1/cmp_luasnip",
 			"hrsh7th/cmp-nvim-lua",
-			{ "L3MON4D3/LuaSnip" },
+			"saadparwaiz1/cmp_luasnip",
 			"rafamadriz/friendly-snippets",
+			{ "j-hui/fidget.nvim", opts = {} },
 		},
 	},
 
