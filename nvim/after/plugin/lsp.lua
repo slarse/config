@@ -195,7 +195,7 @@ vim.list_extend(ensure_installed, {
 	"ts_ls",
 	"eslint",
 	"gopls",
-	"golangci-lint",
+	{ "golangci-lint", version = "v1.64.5" },
 })
 require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
