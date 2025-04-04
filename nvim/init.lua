@@ -57,14 +57,19 @@ lazy.setup({
 		"ray-x/go.nvim",
 		dependencies = { "ray-x/guihua.lua" },
 		config = function()
-			require("go").setup()
+			require("go").setup({
+				dap_debug_keymap = false,
+			})
 		end,
 		event = { "CmdlineEnter" },
 		ft = { "go", "gomod" },
 		build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
 	},
 
-	{ "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap", "theHamsta/nvim-dap-virtual-text" } },
+	{
+		"rcarriga/nvim-dap-ui",
+		dependencies = { "mfussenegger/nvim-dap", "theHamsta/nvim-dap-virtual-text", "nvim-neotest/nvim-nio" },
+	},
 
 	{
 		"nvim-telescope/telescope.nvim",
@@ -104,6 +109,7 @@ lazy.setup({
 			library = {
 				-- Load luvit types when the `vim.uv` word is found
 				{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+				"nvim-dap-ui",
 			},
 		},
 	},
