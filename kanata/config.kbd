@@ -1,6 +1,7 @@
 (defcfg
   process-unmapped-keys yes ;;|no| enable processing of keys that are not in defsrc, useful if mapping a few keys in defsrc instead of most of the keys on your keyboard. Without this, the tap-hold-release and tap-hold-press actions will not activate for keys that are not in defsrc. Disabled because some keys may not work correctly if they are intercepted. E.g. rctl/altgr on Windows; see the windows-altgr configuration item above for context.
   log-layer-changes     no ;;|no| overhead
+  concurrent-tap-hold   yes
 )
 (defvar ;; declare commonly-used values. prefix with $ to call them. They are refered with `$<var name>`
   tap-repress-timeout   100 ;;|500|
@@ -12,22 +13,41 @@
   ;; home row mods ↕tap 🠿hold
   ;; pinky ring middle index | index middle ring pinky
   ;;            timeout ↕tap 🠿hold¦↕tap 🠿hold action
-  ⌂‹◆ (tap-hold-release $🕐↕ $🕐🠿 a ‹◆) ;;
-  ⌂‹⎇ (tap-hold-release $🕐↕ $🕐🠿 s ‹⎇) ;;
-  ⌂‹⎈ (tap-hold-release $🕐↕ $🕐🠿 d ‹⎈) ;;
-  ⌂‹⇧ (tap-hold-release $🕐↕ $🕐🠿 f ‹⇧) ;;
-  ⌂⇧› (tap-hold-release $🕐↕ $🕐🠿 j ‹⇧) ;; same actions for the right side
-  ⌂⎈› (tap-hold-release $🕐↕ $🕐🠿 k ‹⎈) ;;
-  ⌂⎇› (tap-hold-release $🕐↕ $🕐🠿 l ‹⎇) ;;
-  ⌂◆› (tap-hold-release $🕐↕ $🕐🠿 ; ‹◆) ;;
+  ⌂‹◆ (tap-hold-release $🕐↕ $🕐🠿 a ‹◆)
+  ⌂‹⎇ (tap-hold-release $🕐↕ $🕐🠿 r ‹⎇)
+  ⌂‹⎈ (tap-hold-release $🕐↕ $🕐🠿 s ‹⎈)
+  ⌂‹⇧ (tap-hold-release $🕐↕ $🕐🠿 t ‹⇧)
+  ⌂⇧› (tap-hold-release $🕐↕ $🕐🠿 n ‹⇧)
+  ⌂⎈› (tap-hold-release $🕐↕ $🕐🠿 e ‹⎈)
+  ⌂⎇› (tap-hold-release $🕐↕ $🕐🠿 i ‹⎇)
+  ⌂◆› (tap-hold-release $🕐↕ $🕐🠿 o ‹◆)
+
+  🇸🇪c (tap-hold-release $🕐↕ $🕐🠿 c (layer-while-held 🇸🇪))
 )
 (defsrc
-  a s d f   j k l ;
+  q w e r t y u i o p [
+  a s d f g h j k l ; '
+  z x c v b n m
 
   ralt rctrl
 )
-(deflayer ⌂
-  @⌂‹◆ @⌂‹⎇ @⌂‹⎈ @⌂‹⇧        @⌂⇧› @⌂⎈› @⌂⎇› @⌂◆›
+(deflayer colemak
+     _    _    f    p g j    l    u    y    ; _
+  @⌂‹◆ @⌂‹⎇ @⌂‹⎈ @⌂‹⇧ d _ @⌂⇧› @⌂⎈› @⌂⎇› @⌂◆› _
+     _    _ @🇸🇪c    _ _ k    _
 
   bspc esc
+)
+(deflayermap (🇸🇪)
+  [ (unicode "å")
+  ; (unicode "ö")
+  ' (unicode "ä")
+)
+(deflayermap (🇸🇪caps)
+  [ (unicode "Å")
+  ; (unicode "Ö")
+  ' (unicode "Ä")
+)
+(defchordsv2
+  (lsft c) (layer-while-held 🇸🇪caps) 300 first-release ()
 )
