@@ -22,21 +22,21 @@
   ⌂⎇› (tap-hold-release $🕐↕ $🕐🠿 i ‹⎇)
   ⌂◆› (tap-hold-release $🕐↕ $🕐🠿 o ‹◆)
 
-  🇸🇪c (tap-hold-release $🕐↕ $🕐🠿 c (layer-while-held 🇸🇪))
+  🇸🇪tab (tap-hold-release $🕐↕ $🕐🠿 tab (layer-while-held 🇸🇪))
 )
 (defsrc
   q w e r t y u i o p [
   a s d f g h j k l ; '
   z x c v b n m
 
-  ralt rctrl
+  lalt ralt rctrl
 )
 (deflayer colemak
      _    _    f    p g j    l    u    y    ; _
   @⌂‹◆ @⌂‹⎇ @⌂‹⎈ @⌂‹⇧ d _ @⌂⇧› @⌂⎈› @⌂⎇› @⌂◆› _
-     _    _ @🇸🇪c    _ _ k    _
+     _    _    _    _ _ k    _
 
-  bspc esc
+  @🇸🇪tab bspc esc
 )
 (deflayermap (🇸🇪)
   [ (unicode "å")
@@ -49,5 +49,5 @@
   ' (unicode "Ä")
 )
 (defchordsv2
-  (lsft c) (layer-while-held 🇸🇪caps) 300 first-release ()
+  (lsft lalt) (layer-while-held 🇸🇪caps) 300 first-release ()
 )
