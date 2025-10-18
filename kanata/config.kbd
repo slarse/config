@@ -42,11 +42,13 @@
   [ (unicode "å")
   ; (unicode "ö")
   ' (unicode "ä")
+  k (unicode "é")
 )
 (deflayermap (🇸🇪caps)
   [ (unicode "Å")
   ; (unicode "Ö")
   ' (unicode "Ä")
+  k (unicode "É")
 )
 (defchordsv2
   (lsft lalt) (layer-while-held 🇸🇪caps) 300 first-release ()
