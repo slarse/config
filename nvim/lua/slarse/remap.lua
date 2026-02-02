@@ -29,3 +29,7 @@ vim.keymap.set("i", '<leader>"', '""<Left>')
 vim.keymap.set("i", '<leader><leader>"', '""')
 vim.keymap.set("i", "<leader>`", "``<Left>")
 vim.keymap.set("i", "<leader><leader>`", "``")
+
+-- diagnostics
+vim.keymap.set("n", "<leader>nd", "<cmd>lua vim.diagnostic.goto_next()<cr>")
+vim.keymap.set("n", "<leader>pd", "<cmd>lua vim.diagnostic.goto_prev()<cr>")

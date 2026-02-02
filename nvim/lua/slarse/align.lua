@@ -7,9 +7,13 @@ local function align(opts)
 	local end_row = math.max(opts.line1, opts.line2)
 	local lines = vim.api.nvim_buf_get_lines(0, start_row - 1, end_row, true)
 
+  local delimiter = " "
+  if opts.args ~= "" then
+    delimiter = opts.args
+  end
+
 	local word_sizes = {}
   local words_by_line = {}
-	local delimiter = " "
 
 	for _, line in pairs(lines) do
 		local idx = 1
@@ -55,6 +59,6 @@ local function align(opts)
 	vim.api.nvim_buf_set_lines(0, start_row - 1, end_row, true, aligned_lines)
 end
 
-vim.api.nvim_create_user_command("Align", align, { range = true })
+vim.api.nvim_create_user_command("Align", align, { range = true, nargs = '?' })
 
 vim.keymap.set("v", "<leader>ta", ":Align<CR>")

@@ -224,7 +224,6 @@ bar {
     position          bottom
     workspace_buttons yes
     font pango:monospace 12
-    mode hide
     modifier Mod1
 }
 

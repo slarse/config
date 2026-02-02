@@ -22,6 +22,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
 		map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
 		map("gi", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
+    map("<leader>od", vim.diagnostic.open_float, "[O]pen [D]iagnostic")
 		map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
 		map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction", { "n", "x" })
 		map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
@@ -192,10 +193,9 @@ local servers = {
 local ensure_installed = vim.tbl_keys(servers or {})
 vim.list_extend(ensure_installed, {
 	"stylua",
-	"ts_ls",
-	"eslint",
 	"gopls",
-	{ "golangci-lint", version = "v1.64.5" },
+  "postgrestools",
+  "golangci-lint",
 })
 require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
@@ -209,10 +209,12 @@ require("mason-lspconfig").setup({
 			-- by the server configuration above. Useful when disabling
 			-- certain features of an LSP (for example, turning off formatting for ts_ls)
 			server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-			require("lspconfig")[server_name].setup(server)
+			vim.lsp.config[server_name].setup(server)
 		end,
 	},
 })
+
+vim.lsp.enable("postgres_lsp")
 
 local cmp = require("cmp")
 local luasnip = require("luasnip")
@@ -293,15 +295,16 @@ vim.opt.completeopt = { "menu", "menuone", "noselect" }
 
 require("luasnip.loaders.from_vscode").lazy_load()
 
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "bruno",
-	callback = function()
-		vim.lsp.start({
-			init_options = {
-				hostInfo = "neovim",
-			},
-			name = "bruno-ls",
-			cmd = { "bruno-ls" },
-		})
-	end,
-})
+--vim.api.nvim_create_autocmd('FileType', {
+--  pattern = 'bruno',
+--  callback = function(ev)
+--    vim.lsp.start({
+--      init_options = {
+--        hostInfo = 'neovim',
+--      },
+--      name = 'bruno-ls',
+--      cmd = {'bruno-ls'},
+--      root_dir = '/home/slarse/projects/chaintraced-go/bruno/IntegrationTests/',
+--    })
+--  end,
+--})

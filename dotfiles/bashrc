@@ -43,5 +43,5 @@ export XDG_CONFIG_HOME="$HOME/.config"
 # bash history settings
 export HISTSIZE=100000
 export HISTFILESIZE=$HISTSIZE
-export HISTCONTROL=ignoredups:erasedups
+export HISTCONTROL=ignoredups:erasedups:ignorespace
 shopt -s histappend

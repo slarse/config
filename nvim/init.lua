@@ -17,6 +17,52 @@ local lazy = require("lazy")
 
 lazy.setup({
 	{
+		"NickvanDyke/opencode.nvim",
+		dependencies = {
+			-- Recommended for `ask()`, required for `toggle()` — otherwise optional
+			{ "folke/snacks.nvim", opts = { input = { enabled = true } } },
+		},
+		config = function()
+			vim.g.opencode_opts = {
+				-- Your configuration, if any — see `lua/opencode/config.lua`
+			}
+
+			-- Required for `vim.g.opencode_opts.auto_reload`
+			vim.opt.autoread = true
+
+			-- Recommended/example keymaps
+			vim.keymap.set({ "n", "x" }, "<leader>oa", function()
+				require("opencode").ask("@this: ", { submit = true })
+			end, { desc = "Ask about this" })
+			vim.keymap.set({ "n", "x" }, "<leader>o+", function()
+				require("opencode").prompt("@this")
+			end, { desc = "Add this" })
+
+			vim.keymap.set({ "n", "x" }, "<leader>oe", function()
+				require("opencode").prompt("Explain @this and its context", { submit = true })
+			end, { desc = "Explain this" })
+			vim.keymap.set({ "n", "x" }, "<leader>os", function()
+				require("opencode").select()
+			end, { desc = "Select prompt" })
+			vim.keymap.set("n", "<leader>ot", function()
+				require("opencode").toggle()
+			end, { desc = "Toggle embedded" })
+			vim.keymap.set("n", "<leader>on", function()
+				require("opencode").command("session_new")
+			end, { desc = "New session" })
+			vim.keymap.set("n", "<leader>oi", function()
+				require("opencode").command("session_interrupt")
+			end, { desc = "Interrupt session" })
+			vim.keymap.set("n", "<S-C-u>", function()
+				require("opencode").command("messages_half_page_up")
+			end, { desc = "Messages half page up" })
+			vim.keymap.set("n", "<S-C-d>", function()
+				require("opencode").command("messages_half_page_down")
+			end, { desc = "Messages half page down" })
+		end,
+	},
+
+	{
 		"smoka7/hop.nvim",
 		version = "v2.*",
 		opts = {
@@ -64,6 +110,12 @@ lazy.setup({
 		event = { "CmdlineEnter" },
 		ft = { "go", "gomod" },
 		build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
+	},
+
+	{
+		"pmizio/typescript-tools.nvim",
+		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+		opts = {},
 	},
 
 	{
@@ -136,7 +188,10 @@ lazy.setup({
 		"ray-x/lsp_signature.nvim",
 		event = "VeryLazy",
 		opts = {
-			floating_window = false,
+			bind = true,
+			floating_window = true,
+			toggle_key = "<M-x>",
+			toggle_key_flip_floatwin_setting = true,
 		},
 		config = function(_, opts)
 			require("lsp_signature").setup(opts)

@@ -1,6 +1,13 @@
 local telescope = require("telescope")
 
 telescope.setup({
+	defaults = {
+		mappings = {
+			i = {
+				["<c-f>"] = "to_fuzzy_refine",
+			},
+		},
+	},
 	extensions = {
 		fzf = {
 			fuzzy = true,
