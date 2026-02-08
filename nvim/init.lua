@@ -125,7 +125,7 @@ lazy.setup({
 
 	{
 		"nvim-telescope/telescope.nvim",
-		tag = "0.1.8",
+		tag = "v0.2.1",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope-ui-select.nvim",
@@ -142,11 +142,8 @@ lazy.setup({
 
 	{
 		"nvim-treesitter/nvim-treesitter",
-		dependencies = {
-			{ "nushell/tree-sitter-nu", build = ":TSUpdate nu" },
-		},
-		event = { "BufReadPre", "BufNewFile" },
-		run = ":TSUpdate",
+		lazy = false,
+		build = ":TSUpdate",
 	},
 
 	"theprimeagen/harpoon",
@@ -207,6 +204,7 @@ lazy.setup({
 	"joshdick/onedark.vim",
 	"mhartington/oceanic-next",
 	{ "rose-pine/neovim", as = "rose-pine" },
+  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 
 	{
 		"nomnivore/ollama.nvim",

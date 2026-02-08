@@ -1,5 +1,5 @@
 function Colorize(color)
-	color = color or "rose-pine"
+	color = color or "catppuccin-mocha"
 	vim.cmd.colorscheme(color)
 end
 
