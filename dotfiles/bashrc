@@ -24,7 +24,7 @@ source /usr/share/fzf/completion.bash
 export GPG_TTY=$(tty)
 
 export GOPATH="$HOME/go"
-export PATH="$PATH:$HOME/.local/bin:$HOME/.scripts:$HOME/.cargo/bin:$GOPATH/bin"
+export PATH="$PATH:$HOME/.scripts:$HOME/.cargo/bin:$GOPATH/bin"
 
 if [ -f ~/.bashrc_ext ]; then
     . ~/.bashrc_ext
@@ -39,6 +39,9 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 export XDG_CONFIG_HOME="$HOME/.config"
+
+# node version manager
+source /usr/share/nvm/init-nvm.sh
 
 # bash history settings
 export HISTSIZE=100000

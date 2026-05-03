@@ -99,11 +99,11 @@ lazy.setup({
 		end,
 	},
 
-	{
-		"mrcjkb/rustaceanvim",
-		version = "^7",
-		lazy = false, -- This plugin is already lazy
-	},
+--	{
+--		"mrcjkb/rustaceanvim",
+--		version = "^7",
+--		lazy = false, -- This plugin is already lazy
+--	},
 
 	{
 		"ray-x/go.nvim",

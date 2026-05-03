@@ -1,5 +1,6 @@
 # nvim
 nvim/plugin/packer_compiled.lua
+nvim/lazy-lock.json
 
 # i3pystatus
 i3pystatus/i3pystatus

@@ -28,14 +28,18 @@ bwrap \
   --tmpfs /home/agent \
   --bind "$REPO_PATH" /workspace \
   --bind ~/.sandbox/cargo /home/agent/.cargo \
+  --ro-bind ~/.cargo/bin /home/agent/.cargo/bin \
   --ro-bind ~/.rustup /home/agent/.rustup \
   --ro-bind "$REPO_PATH/.git/config" /workspace/.git/config \
   --ro-bind "$REPO_PATH/.git/hooks" /workspace/.git/hooks \
   --ro-bind "$NODE_PREFIX" "$NODE_PREFIX" \
   --ro-bind "$PI_CONFIG" /home/agent/.pi \
+  --bind "$PI_CONFIG/agent/reviews/" /home/agent/.pi/agent/reviews \
+  --bind "$PI_CONFIG/agent/plans/" /home/agent/.pi/agent/plans \
+  --bind "$PI_CONFIG/agent/research/" /home/agent/.pi/agent/research \
   --bind "$PI_CONFIG/agent/sessions/" /home/agent/.pi/agent/sessions \
   --setenv HOME /home/agent \
-  --setenv PATH "$NODE_PREFIX/bin:/usr/bin" \
+  --setenv PATH "$NODE_PREFIX/bin:~/.cargo/bin:/usr/bin" \
   --setenv ANTHROPIC_API_KEY "$ANTHROPIC_API_KEY" \
   --unshare-pid \
   --die-with-parent \
